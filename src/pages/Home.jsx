@@ -1,11 +1,14 @@
+import About from "../components/About";
 import Banner from "../components/Banner";
-import About from "./About";
+import PopularItems from "../components/PopularItems";
+
 
 const Home = () => {
     return (
         <div>
             <Banner />
             <About />
+            <PopularItems></PopularItems>
         </div>
     );
 };
