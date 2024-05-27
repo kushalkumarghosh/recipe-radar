@@ -14,7 +14,7 @@ const NavBar = () => {
 
     return (
         <>
-            <div className="navbar z-10 flex justify-evenly bg-stone-400 text-white">
+            <div className="navbar flex justify-evenly bg-stone-400 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -26,7 +26,7 @@ const NavBar = () => {
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <img src={logo} alt="Recipe Radar Logo" className="h-20 w-20 rounded-full" />
+                        <img src={logo} alt="Recipe Radar Logo" className="h-10 w-10 rounded-full" />
                         <a href="/" className="font-bold text-xl">Recipe Radar</a>
                     </div>
                 </div>
