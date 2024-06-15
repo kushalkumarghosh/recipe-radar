@@ -8,9 +8,9 @@ const NavBar = () => {
     const navOptions =
         <>
             <li>
-                <ScrollLink to="/" >
+                <RouterLink to="/" >
                     Home
-                </ScrollLink>
+                </RouterLink>
             </li>
             <li>
                 <RouterLink to="/recipe">
