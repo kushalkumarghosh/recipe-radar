@@ -6,7 +6,7 @@ import PopularItems from "../components/PopularItems";
 
 const Home = () => {
     return (
-        <div name='home'>
+        <div>
             <Banner />
             <PopularItems></PopularItems>
             <About />

@@ -8,7 +8,7 @@ const NavBar = () => {
     const navOptions =
         <>
             <li>
-                <ScrollLink to="home" smooth={true} duration={300}>
+                <ScrollLink to="/" >
                     Home
                 </ScrollLink>
             </li>
@@ -18,7 +18,7 @@ const NavBar = () => {
                 </RouterLink>
             </li>
             <li>
-                <ScrollLink to="about" smooth={true} duration={500}>
+                <ScrollLink to="about" smooth={true} duration={300}>
                     About
                 </ScrollLink>
             </li>
