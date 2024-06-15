@@ -48,7 +48,7 @@ const Contact = () => {
     }, [submitted]);
 
     return (
-        <div>
+        <div name='contact'>
             <SectionTitle heading="Contact Us" />
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-4xl pb-5 bg-white shadow-lg rounded-lg">

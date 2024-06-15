@@ -3,7 +3,7 @@ import SectionTitle from "./SectionTitle";
 
 const About = () => {
     return (
-        <div>
+        <div name='about'>
             <SectionTitle
                 heading="About Us"
             ></SectionTitle>

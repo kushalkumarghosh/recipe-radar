@@ -1,15 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import logo from '../assets/reciperadar.png';
+import { Link as ScrollLink } from 'react-scroll';
+
 
 const NavBar = () => {
 
     const navOptions =
         <>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/recipe">Recipes</Link></li>
-            <li><Link to="/">About</Link></li>
-            <li><Link to="/">Blog</Link></li>
-            <li><Link to="/">Contact</Link></li>
+            <li>
+                <ScrollLink to="home" smooth={true} duration={300}>
+                    Home
+                </ScrollLink>
+            </li>
+            <li>
+                <RouterLink to="/recipe">
+                    Recipes
+                </RouterLink>
+            </li>
+            <li>
+                <ScrollLink to="about" smooth={true} duration={500}>
+                    About
+                </ScrollLink>
+            </li>
+            <li>
+                <ScrollLink to="blog" smooth={true} duration={300}>
+                    Blog
+                </ScrollLink>
+            </li>
+            <li>
+                <ScrollLink to="contact" smooth={true} duration={300}>
+                    Contact
+                </ScrollLink>
+            </li>
         </>
 
     return (
