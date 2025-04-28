@@ -1,26 +1,32 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const appId = import.meta.env.VITE_APP_ID;
+const appKey = import.meta.env.VITE_APP_KEY;
+
 const Recipe = () => {
     const [recipes, setRecipes] = useState([]);
     const [query, setQuery] = useState('');
 
-    useEffect(() => {
-        fetchRecipes();
-    }, []);
-
-    const fetchRecipes = async (searchQuery = 'Chicken') => {
+    const fetchRecipes = async (searchQuery = 'chicken') => {
         try {
-            const response = await axios.get(`https://api.edamam.com/search?q=${searchQuery}&app_id=1984166e&app_key=57a522f78440a1575e8800817529b5ba`);
+            const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=${appId}&app_key=${appKey}`;
+            const response = await axios.get(url);
             setRecipes(response.data.hits);
         } catch (error) {
             console.error('Error fetching recipes:', error);
         }
     };
 
+    useEffect(() => {
+        fetchRecipes();  
+    }, []);
+
     const handleSearch = () => {
-        fetchRecipes(query);
-        setQuery('');
+        if (query.trim() !== '') {
+            fetchRecipes(query);
+            setQuery('');
+        }
     };
 
     return (
@@ -47,8 +53,8 @@ const Recipe = () => {
                         <div className="p-2">
                             <h2 className="text-xl font-bold mb-2">{recipe.recipe.label}</h2>
                             <p className="text-gray-700">Calories: {Math.round(recipe.recipe.calories)}</p>
-                            <p className="text-gray-700">Cuisine Type: {recipe.recipe.cuisineType.join(', ')}</p>
-                            <a href={recipe.recipe.url} target="_blank" className="text-slate-400 hover:underline">View Recipe</a>
+                            <p className="text-gray-700">Cuisine Type: {recipe.recipe.cuisineType?.join(', ') || 'Unknown'}</p>
+                            <a href={recipe.recipe.url} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:underline">View Recipe</a>
                         </div>
                     </div>
                 ))}
@@ -58,6 +64,3 @@ const Recipe = () => {
 };
 
 export default Recipe;
-
-
-
