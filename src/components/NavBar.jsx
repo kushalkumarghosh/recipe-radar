@@ -1,9 +1,26 @@
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import logo from '../assets/reciperadar.png';
-import { Link as ScrollLink } from 'react-scroll';
-
+import { scroller } from 'react-scroll';
 
 const NavBar = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleScrollOrNavigate = (sectionId) => {
+        if (location.pathname === "/") {
+            scroller.scrollTo(sectionId, { smooth: true, duration: 300, offset: -70 });
+        } else {
+            navigate('/');
+            setTimeout(() => {
+                const el = document.getElementById(sectionId) || document.querySelector(`[name="${sectionId}"]`);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    scroller.scrollTo(sectionId, { smooth: true, duration: 300, offset: -70 });
+                }
+            }, 150);
+        }
+    };
 
     const navOptions =
         <>
@@ -18,19 +35,14 @@ const NavBar = () => {
                 </RouterLink>
             </li>
             <li>
-                <ScrollLink to="about" smooth={true} duration={300}>
+                <a onClick={() => handleScrollOrNavigate('about')} className="cursor-pointer">
                     About
-                </ScrollLink>
+                </a>
             </li>
             <li>
-                <ScrollLink to="blog" smooth={true} duration={300}>
-                    Blog
-                </ScrollLink>
-            </li>
-            <li>
-                <ScrollLink to="contact" smooth={true} duration={300}>
+                <a onClick={() => handleScrollOrNavigate('contact')} className="cursor-pointer">
                     Contact
-                </ScrollLink>
+                </a>
             </li>
         </>
 

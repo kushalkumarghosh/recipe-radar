@@ -20,10 +20,37 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Information submitted:", formData);
-    setSubmitted(true);
+
+    try {
+      const form = new FormData();
+      Object.keys(formData).forEach((key) => {
+        form.append(key, formData[key]);
+      });
+
+      const response = await fetch("https://getform.io/f/bolzjyoa", {
+        method: "POST",
+        body: form,
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong! Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong! Please try again.",
+      });
+    }
   };
 
   useEffect(() => {
